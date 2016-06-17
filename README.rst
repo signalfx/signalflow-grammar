@@ -38,11 +38,25 @@ The library is available for npm.js and Bower.
 Python
 ~~~~~~
 
-The library is available on Pypi:
+The library is available on PyPI and depends on the Python2 ANTLR runtime:
 
 .. code::
 
     $ pip install signalflow-grammar
+
+Then, from your code, you can do:
+
+.. code:: python
+
+    import antlr4
+    from signalflow.grammar.SignalFlowV2Lexer import SignalFlowV2Lexer
+    from signalflow.grammar.SignalFlowV2Parser import SignalFlowV2Parser
+
+    def parse(program):
+        lexer = SignalFlowV2Lexer(program)
+        stream = antlr4.CommonTokenStream(lexer)
+        parser = SignalFlowV2Parser(stream)
+        ...
 
 Generating or updating the artifacts
 ------------------------------------
