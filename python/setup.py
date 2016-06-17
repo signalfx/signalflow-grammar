@@ -10,7 +10,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='signalflow-grammar',
-    version='1.0.0',
+    version='2.0.0',
     description='SignalFx SignalFlow language grammar',
     long_description=readme,
     install_requires=requirements,
