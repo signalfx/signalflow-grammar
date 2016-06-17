@@ -1,0 +1,20 @@
+{
+  "name": "signalflow-grammar.js",
+  "version": "1.0.0",
+  "description": "SignalFx SignalFlow language grammar",
+  "main": "./lib/grammar/SignalFlowV2Parser.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/signalfx/signalflow-grammar"
+  },
+  "keywords": [
+    "signalfx",
+    "signalflow"
+  ],
+  "author": "SignalFx, Inc. <support@signalfx.com>",
+  "license": "Apache-2.0",
+  "homepage": "https://signalfx.com"
+}

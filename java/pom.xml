@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.signalfx.public</groupId>
+  <artifactId>signalflow-grammar</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>signalflow-grammar</name>
+  <description>SignalFx SignalFlow language grammar</description>
+
+  <url>https://www.signalfx.com</url>
+
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/signalfx/signalflow-grammar.git</connection>
+    <developerConnection>scm:git:git@github.com:signalfx/signalflow-grammar.git</developerConnection>
+    <url>https://github.com/signalfx/signalflow-grammar.git</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>max</id>
+      <name>Maxime Petazzoni</name>
+      <email>max@signalfx.com</email>
+      <organization>SignalFx, Inc</organization>
+      <organizationUrl>https://www.signalfx.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <org.antlr.version>4.5.3</org.antlr.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4-runtime</artifactId>
+      <version>${org.antlr.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4</artifactId>
+      <version>${org.antlr.version}</version>
+    </dependency>
+  </dependencies>
+</project>
