@@ -2,7 +2,7 @@
   "name": "signalflow-grammar.js",
   "version": "2.0.0",
   "description": "SignalFx SignalFlow language grammar",
-  "main": "./lib/grammar/SignalFlowV2Parser.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   ],
   "author": "SignalFx, Inc. <support@signalfx.com>",
   "license": "Apache-2.0",
-  "homepage": "https://signalfx.com"
+  "homepage": "https://signalfx.com",
+  "dependencies": {
+    "antlr4": "^4.5.3"
+  }
 }
