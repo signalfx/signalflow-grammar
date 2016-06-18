@@ -79,14 +79,11 @@ Update the generated source code with the ``generate.sh`` script:
 
 .. code::
 
-    $ ./generate.sh
-    + set -e
-    + antlr4 -Dlanguage=Java -package com.signalfx.signalflow.grammar -o java/src/main/java/com/signalfx/signalflow grammar/SignalFlowV2.g4
-    + antlr4 -Dlanguage=JavaScript -package signalflow.grammar -o javascript/lib grammar/SignalFlowV2.g4
-    + antlr4 -Dlanguage=Python2 -package signalflow.grammar -o python/signalflow grammar/SignalFlowV2.g4
+    $ ./generate.sh <version>
+    $ git commit -a -m "Bump to version <version>"
+    $ git push origin master
 
-For each language, update the artifact version and perform a release in the
-appropriate way.
+Then for each language, perform a release of the corresponding package.
 
 Java
 ~~~~
@@ -103,8 +100,7 @@ Javascript
 
     $ cd javascript/
     $ npm publish
-    $ browserify index.js --standalone signalfx.signalflow -o signalflow-grammar-<version>.js
-    $ aws s3 cp $_ s3://...
+    $ aws s3 cp signalflow-grammar-<version>.js s3://...
 
 Python
 ~~~~~~
