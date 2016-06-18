@@ -27,13 +27,27 @@ Maven Central:
     <dependency>
       <groupId>com.signalfx.public</groupId>
       <artifactId>signalflow-grammar</artifactId>
-      <version>1.0.0</version>
+      <version>2.0.0</version>
     </dependency>
 
 Javascript
 ~~~~~~~~~~
 
-The library is available for npm.js and Bower.
+The library is available for npm.js, and as a standalone browserified Javascript bundle.
+
+Node.js
+^^^^^^^
+
+.. code::
+
+    npm install -g signalflow-grammar.js
+
+In browser
+^^^^^^^^^^
+
+.. code:: html
+
+    <script type="text/javascript" src="https://s3.amazonaws.com/public-sites--signalfx-com/cdn/signalflow-grammar-2.0.0.js"></script>
 
 Python
 ~~~~~~
@@ -42,7 +56,7 @@ The library is available on PyPI and depends on the Python2 ANTLR runtime:
 
 .. code::
 
-    $ pip install signalflow-grammar
+    $ pip install signalflow-grammar==2.0.0
 
 Then, from your code, you can do:
 

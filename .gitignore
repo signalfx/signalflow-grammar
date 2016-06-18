@@ -1,5 +1,6 @@
 /java/src/main/java/com/signalfx/signalflow/grammar/SignalFlow*
 /java/target/
+/javascript/signalflow-grammar-*.js
 /javascript/lib/grammar/SignalFlow*
 /javascript/node_modules/
 /python/signalflow/grammar/SignalFlow*
