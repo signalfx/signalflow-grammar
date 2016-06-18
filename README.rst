@@ -87,3 +87,30 @@ Update the generated source code with the ``generate.sh`` script:
 
 For each language, update the artifact version and perform a release in the
 appropriate way.
+
+Java
+~~~~
+
+.. code::
+
+    $ cd java/
+    $ mvn clean deploy
+
+Javascript
+~~~~~~~~~~
+
+.. code::
+
+    $ cd javascript/
+    $ npm publish
+    $ browserify index.js --standalone signalfx.signalflow -o signalflow-grammar-<version>.js
+    $ aws s3 cp $_ s3://...
+
+Python
+~~~~~~
+
+.. code::
+
+    $ cd python/
+    $ python setup.py bdist_wheel
+    $ twine upload dist/signalflow_grammar-<version>-py2-none-any.whl
