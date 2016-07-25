@@ -91,7 +91,7 @@ Java
 .. code::
 
     $ cd java/
-    $ mvn clean deploy
+    $ mvn clean deploy -P release-sign-artifacts -DperformRelease=true -DrepositoryId=ossrh -Dgpg.useagent=false
 
 Javascript
 ~~~~~~~~~~
@@ -100,7 +100,7 @@ Javascript
 
     $ cd javascript/
     $ npm publish
-    $ aws s3 cp signalflow-grammar-<version>.js s3://...
+    $ aws s3 cp signalflow-grammar-<version>.js s3://public-sites--signalfx-com/cdn/
 
 Python
 ~~~~~~
