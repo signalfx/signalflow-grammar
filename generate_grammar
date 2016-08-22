@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+# Generates SignalFlowLexer.g4 file from template file and "include" files
+import os
+import sys
+
+out_path = sys.argv[1]
+lang = sys.argv[2]
+
+tmpl = open(out_path + ".tmpl", 'r').read()
+tmpl = tmpl.replace('###LEXER_MEMBERS###', open(os.path.join(lang, 'grammar', 'lexer_members.g4')).read())
+tmpl = tmpl.replace('###NEWLINE###', open(os.path.join(lang, 'grammar', 'newline.g4')).read())
+tmpl = tmpl.replace('###PARENS###', open(os.path.join(lang, 'grammar', 'parens.g4')).read())
+out_f = open(out_path, 'w')
+out_f.write(tmpl)
+out_f.close()
