@@ -36,7 +36,7 @@ SignalFlowV2Lexer.prototype.nextToken = function() {
         // First emit an extra line break that serves as the end of the statement.
         this.emitToken(this.commonToken(SignalFlowV2Parser.NEWLINE, "\n"));
 
-        // Now emit as much DEDENT tokens as needed.
+        // Now emit as many DEDENT tokens as needed.
         while (this.indents.length > 0) {
             this.emitToken(this.createDedent());
             this.indents.pop();

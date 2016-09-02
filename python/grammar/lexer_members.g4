@@ -36,7 +36,7 @@ def nextToken(self):
         # First emit an extra line break that serves as the end of the statement.
         self.emitToken(self.commonToken(SignalFlowV2Parser.NEWLINE, "\n"))
 
-        # Now emit as much DEDENT tokens as needed.
+        # Now emit as many DEDENT tokens as needed.
         while self.indents:
             self.emitToken(self.createDedent());
             self.indents.pop()

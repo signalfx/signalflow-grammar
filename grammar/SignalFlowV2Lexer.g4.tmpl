@@ -94,14 +94,6 @@ ID
   : [a-zA-Z_][a-zA-Z0-9_]*
   ;
 
-QMARK
-  : '?'
-  ;
-
-EXCL
-  : '!'
-  ;
-
 ###PARENS###
 
 LSQUARE
@@ -172,7 +164,7 @@ SKIP_
  
 COMMENT
   : '#' ~[\r\n]*
-   ;
+  ;
 
 fragment LINE_JOINING
  : '\\' SPACES? ( '\r'? '\n' | '\r' )

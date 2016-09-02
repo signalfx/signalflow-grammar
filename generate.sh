@@ -15,7 +15,7 @@ function run_antlr() {
 
   echo "${lang}/"
   echo "  - generating sources from ${PARSER_GRAMMAR} and ${LEXER_GRAMMAR}..."
-  ./generate_grammar ${LEXER_GRAMMAR} ${lang}
+  ./generate_grammar.py ${LEXER_GRAMMAR} ${lang}
   mkdir -p ${libdir}
   rm -rf ${libdir}/${delpattern};
   antlr4 -Dlanguage=${antlr_lang} -visitor -lib ${libdir} -package ${package} \
