@@ -91,7 +91,7 @@
     return new CommonToken(this._tokenFactorySourcePair, type, DEFAULT_TOKEN_CHANNEL, start, stop);
   }
 
-  // Calculates the indentation of the provided spaces, taking the
+  // Calculates the indentation of the provided whiteSpace, taking the
   // following rules into account:
   //
   // "Tabs are replaced (from left to right) by one to eight spaces
@@ -99,9 +99,9 @@
   //  the replacement is a multiple of eight [...]"
   //
   //  -- https://docs.python.org/3.1/reference/lexical_analysis.html#indentation
-  static int getIndentationCount(String spaces) {
+  static int getIndentationCount(String whiteSpace) {
     int count = 0;
-    for (char ch : spaces.toCharArray()) {
+    for (char ch : whiteSpace.toCharArray()) {
       switch (ch) {
         case '\t':
           count += 8 - (count % 8);

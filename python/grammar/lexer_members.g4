@@ -62,7 +62,7 @@ def commonToken(self, type, text):
     start = stop if not text else stop - len(text) + 1
     return CommonToken(self._tokenFactorySourcePair, type, self.DEFAULT_TOKEN_CHANNEL, start, stop)
 
-## Calculates the indentation of the provided spaces, taking the
+## Calculates the indentation of the provided whiteSpace, taking the
 ## following rules into account:
 ##
 ## "Tabs are replaced (from left to right) by one to eight spaces
@@ -71,9 +71,9 @@ def commonToken(self, type, text):
 ##
 ##  -- https://docs.python.org/3.1/reference/lexical_analysis.html#indentation
 @staticmethod
-def getIndentationCount(spaces):
+def getIndentationCount(whiteSpace):
     count = 0;
-    for ch in spaces:
+    for ch in whiteSpace:
         if '\t' == ch:
             count += 8 - (count % 8)
         else:

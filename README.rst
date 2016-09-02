@@ -75,10 +75,10 @@ Then, from your code, you can do:
 Generating or updating the artifacts
 ------------------------------------
 
-Due to the python like nature of SignalFlow some native code is
+Due to the Python like nature of SignalFlow some native code is
 required to keep track of indent/dedent levels. This native code
-is stored in <lanuage>/grammar/*.g4. These native code files are
-stiched into SignalFlowLexer.g4 by the generate_grammar.py script.
+is stored in <language>/grammar/*.g4. These native code files are
+stitched into SignalFlowLexer.g4 by the generate_grammar.py script.
  
 Update the generated source code with the ``generate.sh`` script:
 

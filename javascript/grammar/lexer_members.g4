@@ -66,10 +66,18 @@ SignalFlowV2Lexer.prototype.commonToken = function(type, text) {
     return new antlr4.CommonToken(this._tokenFactorySourcePair, type, this.DEFAULT_TOKEN_CHANNEL, start, stop);
  };
 
-SignalFlowV2Lexer.prototype.getIndentationCount = function(spaces) {
+// Calculates the indentation of the provided whiteSpace, taking the
+// following rules into account:
+//
+// "Tabs are replaced (from left to right) by one to eight spaces
+//  such that the total number of characters up to and including
+//  the replacement is a multiple of eight [...]"
+//
+//  -- https://docs.python.org/3.1/reference/lexical_analysis.html#indentation
+SignalFlowV2Lexer.prototype.getIndentationCount = function(whiteSpace) {
     var count = 0;
-    for (var idx = 0, len = spaces.length; idx < len; idx++) {
-       var ch = spaces[idx];
+    for (var idx = 0, len = whiteSpace.length; idx < len; idx++) {
+       var ch = whiteSpace[idx];
        if ('\t' == ch) {
            count += 8 - (count % 8);
        } else {
