@@ -7,4 +7,5 @@
 /python/build/
 /python/dist/
 /python/*.egg-info
+/grammar/SignalFlowV2Lexer.g4
 *.pyc
