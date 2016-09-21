@@ -23,7 +23,7 @@ from antlr4.Token import CommonToken
 def emitToken(self, t):
     self._token = t
     self.tokens.append(t)
-       
+
 def nextToken(self):
     # Check if the end-of-file is ahead and there are still some DEDENTS expected.
     if self._input.LA(1) == SignalFlowV2Parser.EOF and self.indents:
@@ -56,7 +56,7 @@ def createDedent(self):
     dedent = self.commonToken(SignalFlowV2Parser.DEDENT, "")
     dedent.line = self.lastToken.line
     return dedent
-  
+
 def commonToken(self, type, text):
     stop = self.getCharIndex() - 1
     start = stop if not text else stop - len(text) + 1
