@@ -10,6 +10,10 @@ program
   : ( NEWLINE | statement )* EOF
   ;
 
+eval_input
+ : testlist NEWLINE* EOF
+ ;
+
 functionDefinition
  : DEF ID parameters ':' suite
  ;
