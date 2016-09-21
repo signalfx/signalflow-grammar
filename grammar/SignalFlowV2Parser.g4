@@ -10,58 +10,104 @@ program
   : ( NEWLINE | statement )* EOF
   ;
 
-functionDefinition
+eval_input
+ : testlist NEWLINE* EOF
+ ;
+
+function_definition
  : DEF ID parameters ':' suite
  ;
 
 parameters
- : OPEN_PAREN varArgsList? CLOSE_PAREN
+ : OPEN_PAREN var_args_list? CLOSE_PAREN
  ;
 
-varArgsList
- : varArgsListParamDef ( ',' varArgsListParamDef )*
+var_args_list
+ : var_args_list_param_def ( ',' var_args_list_param_def )*
  ;
 
-varArgsListParamDef
- : varArgsListParamName ( '=' test)?
+var_args_list_param_def
+ : var_args_list_param_name ( '=' test)?
  ;
 
-varArgsListParamName
+var_args_list_param_name
  : ID
  ;
 
 statement
-  : simpleStatement
-  | compoundStatement
+  : simple_statement
+  | compound_statement
   ;
 
-simpleStatement
-  :  smallStatement ( ';' smallStatement )* ';'? NEWLINE?
+simple_statement
+  :  small_statement ( ';' small_statement )* ';'? NEWLINE?
   ;
 
-smallStatement
-  : exprStatement
-  | returnStatement
+small_statement
+  : expr_statement
+  | flow_statement
+  | import_statement
   ;
 
-exprStatement
-  : (ID BINDING)? test
+expr_statement
+  : (id_list BINDING)? testlist
   ;
 
-returnStatement
- : RETURN test?
+id_list
+  : ID (',' ID)* ','?
+  ;
+
+import_statement
+  : import_name
+  | import_from
+  ;
+
+import_name
+ : IMPORT dotted_as_names
  ;
 
-flowStatment
- : returnStatement
+import_from
+ : FROM dotted_name
+   IMPORT ( '*'
+          | '(' import_as_names ')'
+          | import_as_names
+          )
  ;
 
-compoundStatement
-  : functionDefinition
+import_as_name
+ : ID ( AS ID )?
+ ;
+
+dotted_as_name
+ : dotted_name ( AS ID )?
+ ;
+
+import_as_names
+ : import_as_name ( ',' import_as_name )* ','?
+ ;
+
+dotted_as_names
+ : dotted_as_name ( ',' dotted_as_name )*
+ ;
+
+dotted_name
+ : ID ( '.' ID )*
+ ;
+
+return_statement
+ : RETURN testlist?
+ ;
+
+flow_statement
+ : return_statement
+ ;
+
+compound_statement
+  : function_definition
   ;
 
 suite
- : simpleStatement
+ : simple_statement
  | NEWLINE INDENT statement+ DEDENT
  ;
 
@@ -114,7 +160,7 @@ atom_expr
 
 atom
   : list_value
-  | OPEN_PAREN test CLOSE_PAREN
+  | tuple_expr
   | ID
   | INT
   | FLOAT
@@ -122,6 +168,14 @@ atom
   | NONE
   | TRUE
   | FALSE
+  ;
+
+tuple_expr
+  : OPEN_PAREN testlist? CLOSE_PAREN
+  ;
+
+testlist:
+  test (COMMA test)* COMMA?
   ;
 
 list_value

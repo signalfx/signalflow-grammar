@@ -12,6 +12,18 @@ RETURN
   : 'return'
   ;
 
+FROM
+  : 'from'
+  ;
+
+IMPORT
+  : 'import'
+  ;
+
+AS
+ : 'as'
+ ;
+
 LAMBDA
   : 'lambda'
   ;
@@ -161,7 +173,7 @@ fragment SPACES
 SKIP_
  : ( SPACES | COMMENT | LINE_JOINING ) -> skip
  ;
- 
+
 COMMENT
   : '#' ~[\r\n]*
   ;

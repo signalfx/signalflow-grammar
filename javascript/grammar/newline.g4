@@ -10,7 +10,7 @@ NEWLINE
      var whiteSpaces = this.text.replace(/[\r\n]+/g, "");
      var next = this._input.LA(1);
      if (this.opened > 0 || next == '\r' || next == '\n' || next == '#') {
-       // If we are inside a list or on a blank line, ignore all indents, 
+       // If we are inside a list or on a blank line, ignore all indents,
        // dedents and line breaks.
        this.skip();
      } else {
