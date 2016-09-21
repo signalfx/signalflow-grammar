@@ -41,18 +41,22 @@ simpleStatement
 
 smallStatement
   : exprStatement
-  | returnStatement
+  | flowStatement
   ;
 
 exprStatement
-  : (ID BINDING)? test
+  : (idList BINDING)? testlist
+  ;
+
+idList
+  : ID (',' ID)* ','?
   ;
 
 returnStatement
- : RETURN test?
+ : RETURN testlist?
  ;
 
-flowStatment
+flowStatement
  : returnStatement
  ;
 
@@ -114,7 +118,7 @@ atom_expr
 
 atom
   : list_value
-  | OPEN_PAREN test CLOSE_PAREN
+  | paren_atom
   | ID
   | INT
   | FLOAT
@@ -122,6 +126,14 @@ atom
   | NONE
   | TRUE
   | FALSE
+  ;
+
+paren_atom
+  : OPEN_PAREN testlist? CLOSE_PAREN
+  ;
+
+testlist:
+  test (COMMA test)* COMMA?
   ;
 
 list_value
