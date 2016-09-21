@@ -46,6 +46,7 @@ simpleStatement
 smallStatement
   : exprStatement
   | flowStatement
+  | importStatement
   ;
 
 exprStatement
@@ -55,6 +56,43 @@ exprStatement
 idList
   : ID (',' ID)* ','?
   ;
+
+importStatement
+  : importName
+  | importFrom
+  ;
+
+importName
+ : IMPORT dottedAsNames
+ ;
+
+importFrom
+ : FROM dottedName
+   IMPORT ( '*'
+          | '(' importAsNames ')'
+          | importAsNames
+          )
+ ;
+
+importAsName
+ : ID ( AS ID )?
+ ;
+
+dottedAsName
+ : dottedName ( AS ID )?
+ ;
+
+importAsNames
+ : importAsName ( ',' importAsName )* ','?
+ ;
+
+dottedAsNames
+ : dottedAsName ( ',' dottedAsName )*
+ ;
+
+dottedName
+ : ID ( '.' ID )*
+ ;
 
 returnStatement
  : RETURN testlist?
