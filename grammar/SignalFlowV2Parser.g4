@@ -14,100 +14,100 @@ eval_input
  : testlist NEWLINE* EOF
  ;
 
-functionDefinition
+function_definition
  : DEF ID parameters ':' suite
  ;
 
 parameters
- : OPEN_PAREN varArgsList? CLOSE_PAREN
+ : OPEN_PAREN var_args_list? CLOSE_PAREN
  ;
 
-varArgsList
- : varArgsListParamDef ( ',' varArgsListParamDef )*
+var_args_list
+ : var_args_list_param_def ( ',' var_args_list_param_def )*
  ;
 
-varArgsListParamDef
- : varArgsListParamName ( '=' test)?
+var_args_list_param_def
+ : var_args_list_param_name ( '=' test)?
  ;
 
-varArgsListParamName
+var_args_list_param_name
  : ID
  ;
 
 statement
-  : simpleStatement
-  | compoundStatement
+  : simple_statement
+  | compound_statement
   ;
 
-simpleStatement
-  :  smallStatement ( ';' smallStatement )* ';'? NEWLINE?
+simple_statement
+  :  small_statement ( ';' small_statement )* ';'? NEWLINE?
   ;
 
-smallStatement
-  : exprStatement
-  | flowStatement
-  | importStatement
+small_statement
+  : expr_statement
+  | flow_statement
+  | import_statement
   ;
 
-exprStatement
-  : (idList BINDING)? testlist
+expr_statement
+  : (id_list BINDING)? testlist
   ;
 
-idList
+id_list
   : ID (',' ID)* ','?
   ;
 
-importStatement
-  : importName
-  | importFrom
+import_statement
+  : import_name
+  | import_from
   ;
 
-importName
- : IMPORT dottedAsNames
+import_name
+ : IMPORT dotted_as_names
  ;
 
-importFrom
- : FROM dottedName
+import_from
+ : FROM dotted_name
    IMPORT ( '*'
-          | '(' importAsNames ')'
-          | importAsNames
+          | '(' import_as_names ')'
+          | import_as_names
           )
  ;
 
-importAsName
+import_as_name
  : ID ( AS ID )?
  ;
 
-dottedAsName
- : dottedName ( AS ID )?
+dotted_as_name
+ : dotted_name ( AS ID )?
  ;
 
-importAsNames
- : importAsName ( ',' importAsName )* ','?
+import_as_names
+ : import_as_name ( ',' import_as_name )* ','?
  ;
 
-dottedAsNames
- : dottedAsName ( ',' dottedAsName )*
+dotted_as_names
+ : dotted_as_name ( ',' dotted_as_name )*
  ;
 
-dottedName
+dotted_name
  : ID ( '.' ID )*
  ;
 
-returnStatement
+return_statement
  : RETURN testlist?
  ;
 
-flowStatement
- : returnStatement
+flow_statement
+ : return_statement
  ;
 
-compoundStatement
-  : functionDefinition
+compound_statement
+  : function_definition
   ;
 
 suite
- : simpleStatement
+ : simple_statement
  | NEWLINE INDENT statement+ DEDENT
  ;
 
@@ -160,7 +160,7 @@ atom_expr
 
 atom
   : list_value
-  | paren_atom
+  | tuple_expr
   | ID
   | INT
   | FLOAT
@@ -170,7 +170,7 @@ atom
   | FALSE
   ;
 
-paren_atom
+tuple_expr
   : OPEN_PAREN testlist? CLOSE_PAREN
   ;
 
