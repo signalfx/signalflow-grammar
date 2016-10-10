@@ -40,7 +40,7 @@ statement
   ;
 
 simple_statement
-  :  small_statement ( ';' small_statement )* ';'? NEWLINE?
+  :  small_statement ( ';' small_statement )* ';'? (NEWLINE | EOF)
   ;
 
 small_statement
