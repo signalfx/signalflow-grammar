@@ -11,28 +11,28 @@ program
   ;
 
 eval_input
- : testlist NEWLINE* EOF
- ;
+  : testlist NEWLINE* EOF
+  ;
 
 function_definition
- : DEF ID parameters ':' suite
- ;
+  : DEF ID parameters ':' suite
+  ;
 
 parameters
- : OPEN_PAREN var_args_list? CLOSE_PAREN
- ;
+  : OPEN_PAREN var_args_list? CLOSE_PAREN
+  ;
 
 var_args_list
- : var_args_list_param_def ( ',' var_args_list_param_def )*
- ;
+  : var_args_list_param_def ( ',' var_args_list_param_def )*
+  ;
 
 var_args_list_param_def
- : var_args_list_param_name ( '=' test)?
- ;
+  : var_args_list_param_name ( '=' test)?
+  ;
 
 var_args_list_param_name
- : ID
- ;
+  : ID
+  ;
 
 statement
   : simple_statement
@@ -40,7 +40,7 @@ statement
   ;
 
 simple_statement
-  :  small_statement ( ';' small_statement )* ';'? NEWLINE?
+  :  small_statement ( ';' small_statement )* ';'? (NEWLINE | EOF)
   ;
 
 small_statement
@@ -63,53 +63,53 @@ import_statement
   ;
 
 import_name
- : IMPORT dotted_as_names
- ;
+  : IMPORT dotted_as_names
+  ;
 
 import_from
- : FROM dotted_name
-   IMPORT ( '*'
-          | '(' import_as_names ')'
-          | import_as_names
-          )
- ;
+  : FROM dotted_name
+    IMPORT ( '*'
+           | '(' import_as_names ')'
+           | import_as_names
+           )
+  ;
 
 import_as_name
- : ID ( AS ID )?
- ;
+  : ID ( AS ID )?
+  ;
 
 dotted_as_name
- : dotted_name ( AS ID )?
- ;
+  : dotted_name ( AS ID )?
+  ;
 
 import_as_names
- : import_as_name ( ',' import_as_name )* ','?
- ;
+  : import_as_name ( ',' import_as_name )* ','?
+  ;
 
 dotted_as_names
- : dotted_as_name ( ',' dotted_as_name )*
- ;
+  : dotted_as_name ( ',' dotted_as_name )*
+  ;
 
 dotted_name
- : ID ( '.' ID )*
- ;
+  : ID ( '.' ID )*
+  ;
 
 return_statement
- : RETURN testlist?
- ;
+  : RETURN testlist?
+  ;
 
 flow_statement
- : return_statement
- ;
+  : return_statement
+  ;
 
 compound_statement
   : function_definition
   ;
 
 suite
- : simple_statement
- | NEWLINE INDENT statement+ DEDENT
- ;
+  : simple_statement
+  | NEWLINE INDENT statement+ DEDENT
+  ;
 
 test
   : or_test (IF or_test ELSE test)?
@@ -159,7 +159,7 @@ atom_expr
   ;
 
 atom
-  : list_value
+  : list_expr
   | tuple_expr
   | ID
   | INT
@@ -170,16 +170,16 @@ atom
   | FALSE
   ;
 
+list_expr
+  : LSQUARE (test (COMMA test)*)? RSQUARE
+  ;
+
 tuple_expr
   : OPEN_PAREN testlist? CLOSE_PAREN
   ;
 
 testlist:
   test (COMMA test)* COMMA?
-  ;
-
-list_value
-  : LSQUARE (test (COMMA test)*)? RSQUARE
   ;
 
 trailer

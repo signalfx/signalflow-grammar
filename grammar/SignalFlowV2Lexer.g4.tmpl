@@ -21,8 +21,8 @@ IMPORT
   ;
 
 AS
- : 'as'
- ;
+  : 'as'
+  ;
 
 LAMBDA
   : 'lambda'
@@ -167,18 +167,18 @@ DOT
 ###NEWLINE###
 
 fragment SPACES
- : [ \t]+
- ;
+  : [ \t]+
+  ;
 
 SKIP_
- : ( SPACES | COMMENT | LINE_JOINING ) -> skip
- ;
+  : ( SPACES | COMMENT | LINE_JOINING ) -> skip
+  ;
 
 COMMENT
   : '#' ~[\r\n]*
   ;
 
 fragment LINE_JOINING
- : '\\' SPACES? ( '\r'? '\n' | '\r' )
- ;
+  : '\\' SPACES? ( '\r'? '\n' | '\r' )
+  ;
 
