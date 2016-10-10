@@ -159,7 +159,7 @@ atom_expr
   ;
 
 atom
-  : list_value
+  : list_expr
   | tuple_expr
   | ID
   | INT
@@ -170,16 +170,16 @@ atom
   | FALSE
   ;
 
+list_expr
+  : LSQUARE (test (COMMA test)*)? RSQUARE
+  ;
+
 tuple_expr
   : OPEN_PAREN testlist? CLOSE_PAREN
   ;
 
 testlist:
   test (COMMA test)* COMMA?
-  ;
-
-list_value
-  : LSQUARE (test (COMMA test)*)? RSQUARE
   ;
 
 trailer
