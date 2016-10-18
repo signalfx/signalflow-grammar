@@ -134,7 +134,7 @@ not_test
   ;
 
 comparison
-  : expr ((LT | LE | EQ | NE | GT | GE) expr)*
+  : expr ((LT | LE | EQ | NE | GT | GE | IS | IS NOT) expr)*
   ;
 
 expr
