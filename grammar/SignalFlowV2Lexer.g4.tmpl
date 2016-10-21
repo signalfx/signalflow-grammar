@@ -12,6 +12,10 @@ RETURN
   : 'return'
   ;
 
+RAISE
+  : 'raise'
+  ;
+
 FROM
   : 'from'
   ;
@@ -24,70 +28,60 @@ AS
   : 'as'
   ;
 
-LAMBDA
-  : 'lambda'
+GLOBAL
+  : 'global'
   ;
 
-NONE
-  : 'None'
+NONLOCAL
+  : 'nonlocal'
   ;
 
-TRUE
-  : 'True'
-  ;
-
-FALSE
-  : 'False'
+ASSERT
+  : 'assert'
   ;
 
 IF
   : 'if'
   ;
 
+ELIF
+  : 'elif'
+  ;
+  
 ELSE
   : 'else'
+  ;  
+
+WHILE
+  : 'while'
   ;
 
-INT
-  : [0-9]+
+FOR
+  : 'for'
   ;
 
-FLOAT
-  : [0-9]* '.'? [0-9]+ ([eE][+-]?[0-9]+)?
+IN
+  : 'in'
   ;
 
-STRING
-  : '\'' (ESCAPE_SEQ | ~( '\'' | '\\' | '\r' | '\n'))* '\''
-  | '"' (ESCAPE_SEQ | ~( '"' | '\\' | '\r' | '\n'))* '"'
+TRY
+  : 'try'
   ;
 
-fragment
-ESCAPE_SEQ
-  : '\\' ([btnfr] | '\"' | '\'' | '\\' | [0-3][0-7][0-7] | [0-7][0-7] | [0-7])
+FINALLY
+  : 'finally'
   ;
 
-LE
-  : '<='
+WITH
+  : 'with'
   ;
 
-GE
-  : '>='
+EXCEPT
+  : 'except'
   ;
 
-EQ
-  : '=='
-  ;
-
-NE
-  : '!='
-  ;
-
-LT
-  : '<'
-  ;
-
-GT
-  : '>'
+LAMBDA
+  : 'lambda'
   ;
 
 OR
@@ -106,41 +100,102 @@ IS
   : 'is'
   ;
 
+NONE
+  : 'None'
+  ;
+
+TRUE
+  : 'True'
+  ;
+
+FALSE
+  : 'False'
+  ;
+CLASS
+  : 'class'
+  ;
+
+YIELD
+  : 'yield'
+  ;
+
+DEL
+  : 'del'
+  ;
+
+PASS
+  : 'pass'
+  ;
+
+CONTINUE
+  : 'continue'
+  ;
+
+BREAK
+  : 'break'
+  ;
+
+###NEWLINE###
+
 ID
   : [a-zA-Z_][a-zA-Z0-9_]*
   ;
 
+STRING
+  : '\'' (ESCAPE_SEQ | ~( '\'' | '\\' | '\r' | '\n'))* '\''
+  | '"' (ESCAPE_SEQ | ~( '"' | '\\' | '\r' | '\n'))* '"'
+  ;
+
+INT
+  : [0-9]+
+  ;
+
+FLOAT
+  : [0-9]* '.'? [0-9]+ ([eE][+-]?[0-9]+)?
+  ;
+
+fragment
+ESCAPE_SEQ
+  : '\\' ([btnfr] | '\"' | '\'' | '\\' | [0-3][0-7][0-7] | [0-7][0-7] | [0-7])
+  ;
+
+DOT
+  : '.'
+  ;
+
+ELLIPSE
+  : '...'
+  ;
+
+STAR
+  : '*'
+  ;
+
 ###PARENS###
-
-LSQUARE
-  : '['
-  ;
-
-RSQUARE
-  : ']'
-  ;
-
-LBRACE
-  : '{'
-  ;
-
-RBRACE
-  : '}'
-  ;
 
 COMMA
   : ','
-  ;
-
-SEMICOLON
-  : ';'
   ;
 
 COLON
   : ':'
   ;
 
-PLUS
+SEMICOLON
+  : ';'
+  ;
+
+POWER
+  : '**'
+  ;
+
+ASSIGN
+  : '='
+  ;
+
+###BRACKETS###
+
+ADD
   : '+'
   ;
 
@@ -148,27 +203,47 @@ MINUS
   : '-'
   ;
 
-MUL
-  : '*'
-  ;
-
 DIV
   : '/'
   ;
 
-POW
-  : '**'
+###BRACES###
+
+LESS_THAN
+  : '<'
   ;
 
-BINDING
-  : '='
+GREATER_THAN
+  : '>'
   ;
 
-DOT
-  : '.'
+EQUALS
+  : '=='
   ;
 
-###NEWLINE###
+GT_EQ
+  : '>='
+  ;
+
+LT_EQ
+  : '<='
+  ;
+
+NOT_EQ_1
+  : '<>'
+  ;
+
+NOT_EQ_2
+  : '!='
+  ;
+
+AT
+ : '@'
+ ;
+
+ARROW
+ : '->'
+ ;
 
 fragment SPACES
   : [ \t]+
