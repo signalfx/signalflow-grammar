@@ -103,7 +103,12 @@ flow_statement
   ;
 
 compound_statement
-  : function_definition
+  : if_statement
+  | function_definition
+  ;
+
+if_statement
+  : IF test ':' suite ( ELIF test ':' suite )* ( ELSE ':' suite )?
   ;
 
 suite
