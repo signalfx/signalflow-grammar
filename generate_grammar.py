@@ -10,9 +10,12 @@ lang = sys.argv[2]
 with open(out_path + '.tmpl') as f:
     tmpl = f.read()
     for name, marker in [
-        ('lexer_members.g4', '###LEXER_MEMBERS###'),
-        ('newline.g4', '###NEWLINE###'),
-        ('parens.g4', '###PARENS###')]:
+            ('lexer_members.g4', '###LEXER_MEMBERS###'),
+            ('newline.g4', '###NEWLINE###'),
+            ('parens.g4', '###PARENS###'),
+            ('brackets.g4', '###BRACKETS###'),
+            ('braces.g4', '###BRACES###'),
+            ]:
         with open(os.path.join(lang, 'grammar', name)) as fragment:
             tmpl = tmpl.replace(marker, fragment.read())
 

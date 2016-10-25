@@ -50,7 +50,7 @@ small_statement
   ;
 
 expr_statement
-  : (id_list BINDING)? testlist
+  : (id_list ASSIGN)? testlist
   ;
 
 id_list
@@ -134,24 +134,24 @@ not_test
   ;
 
 comparison
-  : expr ((LT | LE | EQ | NE | GT | GE | IS | IS NOT) expr)*
+  : expr ((LESS_THAN | LT_EQ | EQUALS | NOT_EQ_1 | NOT_EQ_2 | GREATER_THAN | GT_EQ | IS | IS NOT) expr)*
   ;
 
 expr
-  : term ((PLUS | MINUS) term)*
+  : term ((ADD | MINUS) term)*
   ;
 
 term
-  : factor ((MUL | DIV) factor)*
+  : factor ((STAR | DIV) factor)*
   ;
 
 factor
-  : (PLUS | MINUS) factor
+  : (ADD | MINUS) factor
   | power
   ;
 
 power
-  : atom_expr (POW factor)?
+  : atom_expr (POWER factor)?
   ;
 
 atom_expr
@@ -171,7 +171,7 @@ atom
   ;
 
 list_expr
-  : LSQUARE (test (COMMA test)*)? RSQUARE
+  : OPEN_BRACK (test (COMMA test)*)? CLOSE_BRACK
   ;
 
 tuple_expr
@@ -192,6 +192,6 @@ actual_args
   ;
 
 argument
-  : (ID BINDING)? test
+  : (ID ASSIGN)? test
   ;
 
