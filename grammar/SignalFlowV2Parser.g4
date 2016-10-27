@@ -14,6 +14,18 @@ eval_input
   : testlist NEWLINE* EOF
   ;
 
+decorator
+  : '@' dotted_name ( '(' actual_args? ')' )? NEWLINE
+  ;
+
+decorators
+  : decorator+
+  ;
+
+decorated
+  : decorators function_definition
+  ;
+
 function_definition
   : DEF ID parameters ':' suite
   ;
@@ -105,6 +117,7 @@ flow_statement
 compound_statement
   : if_statement
   | function_definition
+  | decorated
   ;
 
 if_statement
