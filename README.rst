@@ -27,7 +27,7 @@ Maven Central:
     <dependency>
       <groupId>com.signalfx.public</groupId>
       <artifactId>signalflow-grammar</artifactId>
-      <version>2.6.0</version>
+      <version>2.7.0</version>
     </dependency>
 
 Javascript
@@ -47,7 +47,7 @@ In browser
 
 .. code:: html
 
-    <script type="text/javascript" src="https://s3.amazonaws.com/public-sites--signalfx-com/cdn/signalflow-grammar-2.6.0.js"></script>
+    <script type="text/javascript" src="https://s3.amazonaws.com/public-sites--signalfx-com/cdn/signalflow-grammar-2.7.0.js"></script>
 
 Python
 ~~~~~~
@@ -56,7 +56,7 @@ The library is available on PyPI and depends on the Python2 ANTLR runtime:
 
 .. code::
 
-    $ pip install signalflow-grammar==2.6.0
+    $ pip install signalflow-grammar==2.7.0
 
 Then, from your code, you can do:
 
