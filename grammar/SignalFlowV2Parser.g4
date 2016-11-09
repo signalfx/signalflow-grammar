@@ -14,6 +14,18 @@ eval_input
   : testlist NEWLINE* EOF
   ;
 
+decorator
+  : '@' dotted_name ( '(' actual_args? ')' )? NEWLINE
+  ;
+
+decorators
+  : decorator+
+  ;
+
+decorated
+  : decorators function_definition
+  ;
+
 function_definition
   : DEF ID parameters ':' suite
   ;
@@ -105,6 +117,7 @@ flow_statement
 compound_statement
   : if_statement
   | function_definition
+  | decorated
   ;
 
 if_statement
@@ -166,6 +179,7 @@ atom_expr
 atom
   : list_expr
   | tuple_expr
+  | dict_expr
   | ID
   | INT
   | FLOAT
@@ -173,6 +187,17 @@ atom
   | NONE
   | TRUE
   | FALSE
+  ;
+
+trailer
+  : OPEN_PAREN actual_args? CLOSE_PAREN
+  | OPEN_BRACK subscript CLOSE_BRACK
+  | DOT ID
+  ;
+
+subscript
+  : test
+  | test? COLON test?
   ;
 
 list_expr
@@ -183,13 +208,12 @@ tuple_expr
   : OPEN_PAREN testlist? CLOSE_PAREN
   ;
 
-testlist:
-  test (COMMA test)* COMMA?
+dict_expr
+  : OPEN_BRACE test ':' test ( ',' test ':' test )* ','? CLOSE_BRACE
   ;
 
-trailer
-  : OPEN_PAREN actual_args? CLOSE_PAREN
-  | DOT ID
+testlist:
+  test (COMMA test)* COMMA?
   ;
 
 actual_args
@@ -199,4 +223,3 @@ actual_args
 argument
   : (ID ASSIGN)? test
   ;
-
