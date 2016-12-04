@@ -47,10 +47,10 @@ IF
 ELIF
   : 'elif'
   ;
-  
+
 ELSE
   : 'else'
-  ;  
+  ;
 
 WHILE
   : 'while'
@@ -195,6 +195,26 @@ ASSIGN
 
 ###BRACKETS###
 
+OR_OP
+  : '|'
+  ;
+
+XOR
+  : '^'
+  ;
+
+AND_OP
+  : '&'
+  ;
+
+LEFT_SHIFT
+  : '<<'
+  ;
+
+RIGHT_SHIFT
+  : '>>'
+  ;
+
 ADD
   : '+'
   ;
@@ -205,6 +225,10 @@ MINUS
 
 DIV
   : '/'
+  ;
+
+NOT_OP
+  : '~'
   ;
 
 ###BRACES###
