@@ -156,6 +156,24 @@ comparison
   ;
 
 expr
+  : xor_expr ( '|' xor_expr )*
+  ;
+
+xor_expr
+  :  and_expr ( '^' and_expr )*
+  ;
+
+and_expr
+  : shift_expr ( '&' shift_expr )*
+  ;
+
+shift_expr
+  : arith_expr ( '<<' arith_expr
+               | '>>' arith_expr
+               )*
+  ;
+
+arith_expr
   : term ((ADD | MINUS) term)*
   ;
 
