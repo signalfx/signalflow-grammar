@@ -209,7 +209,7 @@ tuple_expr
   ;
 
 dict_expr
-  : OPEN_BRACE test ':' test ( ',' test ':' test )* ','? CLOSE_BRACE
+  : OPEN_BRACE (test ':' test ( ',' test ':' test )* ','?)? CLOSE_BRACE
   ;
 
 testlist:
