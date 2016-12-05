@@ -182,7 +182,7 @@ term
   ;
 
 factor
-  : (ADD | MINUS) factor
+  : (ADD | MINUS | NOT_OP) factor
   | power
   ;
 
