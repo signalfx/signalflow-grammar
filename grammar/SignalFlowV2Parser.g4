@@ -59,6 +59,7 @@ small_statement
   : expr_statement
   | flow_statement
   | import_statement
+  | assert_statement
   ;
 
 expr_statement
@@ -118,6 +119,10 @@ compound_statement
   : if_statement
   | function_definition
   | decorated
+  ;
+
+assert_statement
+  : ASSERT test ( ',' test )?
   ;
 
 if_statement
