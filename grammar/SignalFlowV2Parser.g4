@@ -35,7 +35,20 @@ parameters
   ;
 
 var_args_list
-  : var_args_list_param_def ( ',' var_args_list_param_def )*
+  : var_args_list_param_def ( ',' var_args_list_param_def )* ( ','  ( var_args_star_param ( ',' var_args_kws_param)?
+                                                                    | var_args_kws_param
+                                                                    )?
+                                                             )?
+  | var_args_star_param ( ',' var_args_kws_param)?
+  | var_args_kws_param
+  ;
+
+var_args_star_param
+  :  STAR var_args_list_param_name
+  ;
+
+var_args_kws_param
+  : POWER var_args_list_param_name
   ;
 
 var_args_list_param_def
@@ -240,7 +253,18 @@ testlist:
   ;
 
 actual_args
-  : argument (COMMA argument)*
+  : (argument COMMA)* ( argument COMMA?
+                      | actual_star_arg ( COMMA argument)* ( COMMA actual_kws_arg )?
+                      | actual_kws_arg
+                      )
+  ;
+
+actual_star_arg
+  :  STAR test
+  ;
+
+actual_kws_arg
+  : POWER test
   ;
 
 argument
