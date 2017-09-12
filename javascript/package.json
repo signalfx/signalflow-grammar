@@ -1,6 +1,6 @@
 {
   "name": "signalflow-grammar.js",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "description": "SignalFx SignalFlow language grammar",
   "main": "index.js",
   "files": [
