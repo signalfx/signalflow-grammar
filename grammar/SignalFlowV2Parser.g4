@@ -152,8 +152,25 @@ test
   | lambdef
   ;
 
+// Backward compatibility cruft to support:
+// [ x for x in lambda: True, lambda: False if x() ]
+// even while also allowing:
+// lambda x: 5 if x else 2
+// (But not a mix of the two)
+testlist_nocond
+  : test_nocond ((COMMA test_nocond)+ (COMMA)?)?
+  ;
+
+test_nocond
+  : or_test | lambdef_nocond
+  ;
+
 lambdef
   : LAMBDA ID COLON test
+  ;
+
+lambdef_nocond
+  : LAMBDA ID COLON test_nocond
   ;
 
 or_test
@@ -237,19 +254,27 @@ subscript
   ;
 
 list_expr
-  : OPEN_BRACK (test (COMMA test)*)? CLOSE_BRACK
+  : OPEN_BRACK list_maker? CLOSE_BRACK
+  ;
+
+list_maker
+  : test ( list_for | (COMMA test)* (COMMA)? )
   ;
 
 tuple_expr
-  : OPEN_PAREN testlist? CLOSE_PAREN
+  : OPEN_PAREN testlist_comp? CLOSE_PAREN
   ;
 
 dict_expr
   : OPEN_BRACE (test ':' test ( ',' test ':' test )* ','?)? CLOSE_BRACE
   ;
 
-testlist:
-  test (COMMA test)* COMMA?
+testlist_comp
+  : test (comp_for | (COMMA test)* COMMA?)
+  ;
+
+testlist
+  : test (COMMA test)* COMMA?
   ;
 
 actual_args
@@ -268,5 +293,29 @@ actual_kws_arg
   ;
 
 argument
-  : (ID ASSIGN)? test
+  : test (comp_for)? | (ID ASSIGN)? test
+  ;
+
+list_iter
+  : list_for | list_if
+  ;
+
+list_for
+  : FOR id_list IN testlist_nocond (list_iter)?
+  ;
+
+list_if
+  : IF test_nocond (list_iter)?
+  ;
+
+comp_iter
+  : comp_for | comp_if
+  ;
+
+comp_for
+  : FOR id_list IN or_test (comp_iter)?
+  ;
+
+comp_if
+  : IF test_nocond (comp_iter)?
   ;
