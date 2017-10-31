@@ -35,16 +35,16 @@ parameters
   ;
 
 var_args_list
-  : var_args_list_param_def ( ',' var_args_list_param_def )* ( ','  ( var_args_star_param ( ',' var_args_kws_param)?
+  : var_args_list_param_def ( ',' var_args_list_param_def )* ( ','  ( (var_args_star_param (',' var_args_list_param_def)* (',' var_args_kws_param)?)
                                                                     | var_args_kws_param
                                                                     )?
                                                              )?
-  | var_args_star_param ( ',' var_args_kws_param)?
+  | var_args_star_param (',' var_args_list_param_def)* (',' var_args_kws_param)?
   | var_args_kws_param
   ;
 
 var_args_star_param
-  :  STAR var_args_list_param_name
+  :  STAR var_args_list_param_name?
   ;
 
 var_args_kws_param
@@ -279,7 +279,7 @@ testlist
 
 actual_args
   : (argument COMMA)* ( argument COMMA?
-                      | actual_star_arg ( COMMA argument)* ( COMMA actual_kws_arg )?
+                      | actual_star_arg (COMMA argument)* (COMMA actual_kws_arg)?
                       | actual_kws_arg
                       )
   ;
