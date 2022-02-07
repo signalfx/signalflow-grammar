@@ -146,6 +146,20 @@ STRING
   | '"' (ESCAPE_SEQ | ~( '"' | '\\' | '\r' | '\n'))* '"'
   ;
 
+LONG_STRING
+ : '\'\'\'' LONG_STRING_ITEM*? '\'\'\''
+ | '"""' LONG_STRING_ITEM*? '"""'
+ ;
+
+fragment LONG_STRING_ITEM
+ : LONG_STRING_CHAR
+ | ESCAPE_SEQ
+ ;
+
+fragment LONG_STRING_CHAR
+ : ~'\\'
+ ;
+
 INT
   : [0-9]+
   ;
