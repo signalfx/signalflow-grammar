@@ -18,7 +18,7 @@ function run_antlr() {
   ./generate_grammar.py ${LEXER_GRAMMAR} ${lang}
   mkdir -p ${libdir}
   rm -rf ${libdir}/${delpattern};
-  java -jar /usr/local/lib/antlr-4.5.3-complete.jar -Dlanguage=${antlr_lang} -visitor -lib ${libdir} -package ${package} \
+  antlr4 -Dlanguage=${antlr_lang} -visitor -lib ${libdir} -package ${package} \
    -o ${output} ${PARSER_GRAMMAR} ${LEXER_GRAMMAR}
   rm ${LEXER_GRAMMAR}
 }
@@ -72,5 +72,5 @@ if [ $# -ne 1 ] ; then
 fi
 
 do_java $1
-# do_javascript $1
+do_javascript $1
 do_python $1
