@@ -56,7 +56,11 @@ var_args_list_param_def
   ;
 
 var_args_list_param_name
-  : ID
+  : ID param_type?
+  ;
+
+param_type
+  : ':' ID
   ;
 
 statement

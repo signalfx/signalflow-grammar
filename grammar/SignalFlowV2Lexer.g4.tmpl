@@ -274,11 +274,11 @@ fragment SPACES
   ;
 
 SKIP_
-  : ( SPACES | COMMENT | LINE_JOINING ) -> skip
+  : ( SPACES | LINE_JOINING ) -> skip
   ;
 
 COMMENT
-  : '#' ~[\r\n]*
+  : '#' ~[\r\n]* -> channel(1)
   ;
 
 fragment LINE_JOINING
