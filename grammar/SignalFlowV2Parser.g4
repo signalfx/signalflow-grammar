@@ -241,7 +241,6 @@ atom
   | INT
   | FLOAT
   | STRING+
-  | LONG_STRING+
   | NONE
   | TRUE
   | FALSE
