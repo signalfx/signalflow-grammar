@@ -61,7 +61,13 @@ function do_python() {
 
   echo "  - updating python package version to ${version}..."
   cd python
-  sed -i "" -e "s/version='.*'/version='${version}'/" setup.py
+
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i "" -e "s/version='.*'/version='${version}'/" setup.py
+  else
+    sed -i -e "s/version='.*'/version='${version}'/" setup.py
+  fi
+
   python setup.py build
   cd ..
 }
