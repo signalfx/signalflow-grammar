@@ -46,7 +46,7 @@ function do_javascript() {
 
   echo "  - updating node.js package version to ${version}..."
   cd javascript
-  npm version ${version} > /dev/null
+  npm version ${version} --allow-same-version > /dev/null
 
   echo "  - generating browserified bundle ${bundle}..."
   browserify index.js --standalone signalfx.signalflow -o ${bundle}
