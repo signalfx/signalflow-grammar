@@ -2,6 +2,8 @@
 
 set -e
 
+export ANTLR4_TOOLS_ANTLR_VERSION=4.10.1
+
 PARSER_GRAMMAR="grammar/SignalFlowV2Parser.g4"
 LEXER_GRAMMAR="grammar/SignalFlowV2Lexer.g4"
 
