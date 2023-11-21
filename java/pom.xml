@@ -4,7 +4,7 @@
 
   <groupId>com.signalfx.public</groupId>
   <artifactId>signalflow-grammar</artifactId>
-  <version>2.13.0</version>
+  <version>2.14.0</version>
   <packaging>jar</packaging>
 
   <name>signalflow-grammar</name>
@@ -38,7 +38,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <org.antlr.version>4.5.3</org.antlr.version>
+    <org.antlr.version>4.10.1</org.antlr.version>
   </properties>
 
   <dependencies>

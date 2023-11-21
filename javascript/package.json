@@ -1,12 +1,13 @@
 {
   "name": "signalflow-grammar.js",
-  "version": "2.13.0",
+  "version": "2.14.0",
   "description": "SignalFx SignalFlow language grammar",
   "main": "index.js",
   "files": [
     "index.js",
     "lib/"
   ],
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,6 +27,6 @@
   "license": "Apache-2.0",
   "homepage": "https://signalfx.com",
   "dependencies": {
-    "antlr4": "4.5.3"
+    "antlr4": "4.10.1"
   }
 }
